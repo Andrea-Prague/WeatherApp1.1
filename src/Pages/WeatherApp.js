@@ -33,7 +33,7 @@ class App extends React.Component {
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${API_KEY}`);
     const data_json = await api_call.json(); //transform data into json format
     console.log(data_json);
-    if (city) {
+    if (data_json.city) {
     this.setState({
       temperature: Math.round(data_json.list[0].main.temp/10),
       city: data_json.city.name,
