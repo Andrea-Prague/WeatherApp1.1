@@ -7,4 +7,3 @@ To be added:
 - content for Forecast route
 - icons instead for description
 - restructure 
-- fix when entering a wrong city name
