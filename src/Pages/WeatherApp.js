@@ -15,7 +15,7 @@ const themeLight = {
   bgColor: '#cfd7d7'
 };
 
-const API_KEY = '9e2c5a4ca889466adea72bdce03dd01d';
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 class App extends React.Component {
   state = {
@@ -30,17 +30,17 @@ class App extends React.Component {
   getWeather = async (e) =>{
     e.preventDefault();
     const city = e.target.elements.city.value;
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${API_KEY}`);
-    const data_json = await api_call.json(); //transform data into json format
-    console.log(data_json);
-    if (data_json.city) {
+    const apiCall = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${API_KEY}`);
+    const dataJson = await apiCall.json(); //transform data into json format
+    console.log(dataJson);
+    if (dataJson.city) {
     this.setState({
-      temperature: Math.round(data_json.list[0].main.temp/10),
-      city: data_json.city.name,
-      country: data_json.city.country,
-      humidity: data_json.list[0].main.humidity,
-      description: data_json.list[0].weather[0].description,
-      icon: data_json.list[0].weather[0].icon,
+      temperature: Math.round(dataJson.list[0].main.temp/10),
+      city: dataJson.city.name,
+      country: dataJson.city.country,
+      humidity: dataJson.list[0].main.humidity,
+      description: dataJson.list[0].weather[0].description,
+      icon: dataJson.list[0].weather[0].icon,
       error: ''
     })}
 

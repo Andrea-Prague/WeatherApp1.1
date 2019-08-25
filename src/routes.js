@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import WeatherApp from './Pages/WeatherApp';
-import Forecast from './Pages/Forecast';
-import NotFound from './Pages/NotFound';
+import WeatherApp from './Pages/weatherApp';
+import Forecast from './Pages/forecast';
+import NotFound from './Pages/notFound';
 
 const Routes = (props) => (
   <Router {...props}>
