@@ -7,4 +7,5 @@ export default styled.div `
   color: ${props => (props.theme.color)};
   height: 100vh;
   margin: 50px;
+  border-radius: 20px;
 `

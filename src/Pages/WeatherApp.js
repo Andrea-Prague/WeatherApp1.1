@@ -4,6 +4,7 @@ import Search from '../Components/Search/search';
 import ResultCard from '../Components/Cards/ResultCard/resultCard';
 import Wrapper from '../Components/wrapper';
 import { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 
 const themeDark = {
   color: '#69dede',
@@ -14,6 +15,10 @@ const themeLight = {
   color: '#3e9999',
   bgColor: '#cfd7d7'
 };
+
+const WeatherImg = styled.img `
+  z-index: 10;
+`
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -27,6 +32,17 @@ class App extends React.Component {
     icon: undefined,
     error: undefined
   }
+
+  setIcon = () => {
+    if (this.state.main === 'Clear') {
+      return <WeatherImg src="../assets/images/sun.jpg" alt={this.state.description} />
+    }
+    if (this.state.main === 'Clouds'){
+      return <WeatherImg scr="../assets/images/cloudy.jpg" alt={this.state.description} />
+    }
+  }
+
+
   getWeather = async (e) =>{
     e.preventDefault();
     const city = e.target.elements.city.value;
@@ -39,8 +55,8 @@ class App extends React.Component {
       city: dataJson.city.name,
       country: dataJson.city.country,
       humidity: dataJson.list[0].main.humidity,
+      main: dataJson.list[0].weather[0].main,
       description: dataJson.list[0].weather[0].description,
-      icon: dataJson.list[0].weather[0].icon,
       error: ''
     })}
 
@@ -55,6 +71,8 @@ class App extends React.Component {
     })
   }
   }
+
+
   render (){
     return(
     <ThemeProvider theme={themeLight}>
@@ -72,6 +90,7 @@ class App extends React.Component {
             country={this.state.country}
             humidity={this.state.humidity}
             description={this.state.description}
+            icon={this.setIcon()}
             error={this.state.error}
             />
         </ThemeProvider>

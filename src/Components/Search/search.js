@@ -45,7 +45,7 @@ const Search = props => {
           <InputText type='text' name='city' placeholder='Type city here...'></InputText>
         </LabelAndInput>
       </Cards>
-      <InputSubmit type='submit'>Check the weather in this city</InputSubmit>
+      <InputSubmit type='submit'>Check the weather</InputSubmit>
     </SearchForm>
   )
 }

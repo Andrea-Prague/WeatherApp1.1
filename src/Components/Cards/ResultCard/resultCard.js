@@ -8,7 +8,7 @@ const ResultCardDiv = styled.div `
 
 const ResultCard = props => {
   return(
-    <ResultCardDiv >
+    <ResultCardDiv>
       {props.city && <Cards>
         <p>Location: { props.city } in { props.country }</p>
         <p>Degrees: { props.temperature }°C</p>
