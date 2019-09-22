@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import WeatherAppContext from '../../../context/weatherAppContext';
 
 const ImageCardDiv = styled.div `
   background-color: #fff;
@@ -12,11 +13,14 @@ const WeatherImg = styled.img `
   height: 50px;
 `
 
-
 const ImageCard = props => (
-  <ImageCardDiv>
-    <WeatherImg src={props.src} alt={props.description}/>
-  </ImageCardDiv>
+  <WeatherAppContext.Consumer>
+    {context => (
+      <ImageCardDiv>
+      <WeatherImg src={props.src} alt={context.description}/>
+      </ImageCardDiv>
+    )}
+  </WeatherAppContext.Consumer>
 )
 
 export default ImageCard;
