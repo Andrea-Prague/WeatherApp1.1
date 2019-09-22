@@ -5,6 +5,7 @@ import ResultCard from '../Components/Cards/ResultCard/resultCard';
 import Wrapper from '../Components/wrapper';
 import { ThemeProvider } from 'styled-components';
 import styled from 'styled-components';
+import Clouds from '../assets/images/cloudy.jpg';
 
 const themeDark = {
   color: '#69dede',
@@ -16,10 +17,6 @@ const themeLight = {
   bgColor: '#cfd7d7'
 };
 
-const WeatherImg = styled.img `
-  z-index: 10;
-`
-
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 class App extends React.Component {
@@ -29,19 +26,18 @@ class App extends React.Component {
     country: undefined,
     humidity: undefined,
     description: undefined,
-    icon: undefined,
+    main: undefined,
     error: undefined
   }
 
   setIcon = () => {
     if (this.state.main === 'Clear') {
-      return <WeatherImg src="../assets/images/sun.jpg" alt={this.state.description} />
+      return <img src="../assets/images/sun.jpg" alt={this.state.description} />
     }
-    if (this.state.main === 'Clouds'){
-      return <WeatherImg scr="../assets/images/cloudy.jpg" alt={this.state.description} />
+    if (this.state.main === "Rain"){
+      return <img src={Clouds} alt={this.state.description} />
     }
   }
-
 
   getWeather = async (e) =>{
     e.preventDefault();
@@ -71,7 +67,6 @@ class App extends React.Component {
     })
   }
   }
-
 
   render (){
     return(
