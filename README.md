@@ -5,5 +5,5 @@ To be added:
 - nicer styling and better layout
 - responsivity
 - content for Forecast route
-- icons instead for description
 - restructure 
+- context for icons and their styling
