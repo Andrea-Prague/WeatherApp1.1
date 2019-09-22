@@ -6,6 +6,8 @@ import Wrapper from '../Components/wrapper';
 import { ThemeProvider } from 'styled-components';
 import styled from 'styled-components';
 import Clouds from '../assets/images/cloudy.jpg';
+import weatherAppContext from '../context/weatherAppContext';
+import WeatherAppContext from '../context/weatherAppContext';
 
 const themeDark = {
   color: '#69dede',
@@ -20,15 +22,17 @@ const themeLight = {
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 class App extends React.Component {
-  state = {
-    temperature: undefined,
-    city: undefined,
-    country: undefined,
-    humidity: undefined,
-    description: undefined,
-    main: undefined,
-    error: undefined
-  }
+  // state = {
+  //   temperature: undefined,
+  //   city: undefined,
+  //   country: undefined,
+  //   humidity: undefined,
+  //   description: undefined,
+  //   main: undefined,
+  //   error: undefined
+  // }
+  const [context] = useContext()
+
 
   setIcon = () => {
     if (this.state.main === 'Clear') {
@@ -70,27 +74,29 @@ class App extends React.Component {
 
   render (){
     return(
-    <ThemeProvider theme={themeLight}>
-      <Wrapper>
-        <ThemeProvider theme={themeDark}>
-          <Header />
-        </ThemeProvider>
-        <ThemeProvider theme={themeLight}>
-          <Search getWeather={this.getWeather}/>
-        </ThemeProvider>
-        <ThemeProvider theme={themeDark}>
-          <ResultCard 
-            temperature={this.state.temperature}
-            city={this.state.city}
-            country={this.state.country}
-            humidity={this.state.humidity}
-            description={this.state.description}
-            icon={this.setIcon()}
-            error={this.state.error}
-            />
-        </ThemeProvider>
-      </Wrapper>
-    </ThemeProvider>
+    <WeatherAppContext>
+      <ThemeProvider theme={themeLight}>
+        <Wrapper>
+          <ThemeProvider theme={themeDark}>
+            <Header />
+          </ThemeProvider>
+          <ThemeProvider theme={themeLight}>
+            <Search getWeather={this.getWeather}/>
+          </ThemeProvider>
+          <ThemeProvider theme={themeDark}>
+            <ResultCard 
+              temperature={this.state.temperature}
+              city={this.state.city}
+              country={this.state.country}
+              humidity={this.state.humidity}
+              description={this.state.description}
+              icon={this.setIcon()}
+              error={this.state.error}
+              />
+          </ThemeProvider>
+        </Wrapper>
+      </ThemeProvider>
+    </WeatherAppContext>
     )
   }
 }
