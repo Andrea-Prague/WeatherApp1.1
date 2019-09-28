@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Header from '../Components/header/header';
 import Search from '../Components/Search/search';
 import ResultCard from '../Components/Cards/ResultCard/resultCard';
 import Wrapper from '../Components/wrapper';
 import { ThemeProvider } from 'styled-components';
 import Clouds from '../assets/images/cloudy.jpg';
-import WeatherAppContext from '../context/weatherAppContext';
 
 const themeDark = {
   color: '#69dede',
@@ -26,8 +25,6 @@ const App = () => {
   const [description, setDescription] = useState(undefined);
   const [main, setMain] = useState(undefined);
   const [error, setError] = useState(undefined);
-
-  const context = useContext(WeatherAppContext);
   
   const setIcon = () => {
     if (main === 'Clear') {
