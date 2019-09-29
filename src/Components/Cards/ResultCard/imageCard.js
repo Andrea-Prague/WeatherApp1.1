@@ -13,9 +13,9 @@ const WeatherImg = styled.img `
 `
 
 const ImageCard = props => (
-    <ImageCardDiv>
-      <WeatherImg src={props.src} alt={'image'}/>
-    </ImageCardDiv>
+  <ImageCardDiv>
+    <WeatherImg src={props.src} alt={'image'}/>
+  </ImageCardDiv>
     
 )
 

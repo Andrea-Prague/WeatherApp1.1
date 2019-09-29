@@ -6,4 +6,4 @@ To be added:
 - responsivity
 - content for Forecast route
 - restructure 
-- context for icons and their styling
+- Redux state for icons

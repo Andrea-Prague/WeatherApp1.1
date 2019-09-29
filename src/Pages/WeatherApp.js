@@ -5,6 +5,8 @@ import ResultCard from '../Components/Cards/ResultCard/resultCard';
 import Wrapper from '../Components/wrapper';
 import { ThemeProvider } from 'styled-components';
 import Clouds from '../assets/images/cloudy.jpg';
+import { connect } from 'react-redux';
+import { getData } from '../Redux/actions';
 
 const themeDark = {
   color: '#69dede',
@@ -40,7 +42,7 @@ const App = () => {
     const city = e.target.elements.city.value;
     const apiCall = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${API_KEY}`);
     const dataJson = await apiCall.json(); //transform data into json format
-    console.log(dataJson);
+    // console.log(dataJson);
     if (dataJson.city) {
       return(
       setTemperature(Math.round(dataJson.list[0].main.temp/10)),
@@ -86,4 +88,16 @@ const App = () => {
   )
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    data: state.Reducer
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    setData: getData()
+  }
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(App);
